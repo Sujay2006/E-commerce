@@ -95,41 +95,47 @@ function ShoppingHome() {
       },[productDetails])
     return(
         <div className="flex flex-col min-h-screen">
-            <div className="relative overflow-hidden w-full h-[500px]">
-                {
-                    slides.map((slide,index)=> <img
+           <div className="relative overflow-hidden w-full h-[200px] sm:h-[400px] md:h-[500px]">
+              {
+                slides.map((slide, index) => (
+                  <img
                     src={slide}
                     key={index}
-                    className={`${index == currentSlide ? 'opacity-100': 'opacity-0'} absolute top-0 w-full h-full object-cover left-0 transition-opacity duration-1000`}
-                    />)
+                    className={`${index === currentSlide ? 'opacity-100' : 'opacity-0'} absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-1000`}
+                    alt={`Slide ${index + 1}`}
+                  />
+                ))
+              }
+
+              {/* Left Button */}
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() =>
+                  setCurrentSlide(
+                    (prevSlide) => (prevSlide - 1 + slides.length) % slides.length
+                  )
                 }
-                <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={() =>
-                        setCurrentSlide(
-                        (prevSlide) =>
-                            (prevSlide - 1 + slides.length) %
-                        slides.length
-                        )
-                    }
-                    className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/80"
-                    >
-                    <ChevronLeftIcon className="w-4 h-4" />
-                </Button>
-                <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={() =>
-                        setCurrentSlide(
-                        (prevSlide) => (prevSlide + 1) % slides.length
-                        )
-                    }
-                    className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/80"
-                    >
-                    <ChevronRightIcon className="w-4 h-4" />
-                </Button>
+                className="absolute top-1/2 left-2 sm:left-4 transform -translate-y-1/2 bg-white/80 p-1 sm:p-2"
+              >
+                <ChevronLeftIcon className="w-4 h-4 sm:w-6 sm:h-6" />
+              </Button>
+
+              {/* Right Button */}
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() =>
+                  setCurrentSlide(
+                    (prevSlide) => (prevSlide + 1) % slides.length
+                  )
+                }
+                className="absolute top-1/2 right-2 sm:right-4 transform -translate-y-1/2 bg-white/80 p-1 sm:p-2"
+              >
+                <ChevronRightIcon className="w-4 h-4 sm:w-6 sm:h-6" />
+              </Button>
             </div>
+
             <section className="py-12 bg-gray-50">
                 <div className="container mx-auto px-4">
                     <h2 className="text-3xl font-bold mb-8 text-center">Shop by Category</h2>

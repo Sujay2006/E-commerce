@@ -88,7 +88,7 @@ function ProductDetail({ open, setOpen, productDetails }) {
      reviews.reduce((sum, reviewItem) => sum + reviewItem.reviewValue, 0) /  reviews.length : 0;
     return (
         <Dialog open={open} onOpenChange={handleDialogClose}>
-            <DialogContent className="grid grid-cols-2 gap-8 sm:p-12 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[70vw] ">
+            <DialogContent className="overflow-y-auto grid md:grid-cols-2 gap-8 sm:p-12 max-w-[80vw] sm:max-w-[80vw] lg:max-w-[70vw] ">
                 <div className="relative overflow-hidden rounded-lg">
                     <img
                         src={productDetails?.image}
